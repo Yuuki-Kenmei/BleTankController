@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/border_rectangle4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/controllerListItemNameTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <com.sys_ky.bletankcontroller.control.CustomImageButton
+            android:id="@+id/controllerListItemEditImageButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="0.45"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/img_edit"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <com.sys_ky.bletankcontroller.control.CustomImageButton
+            android:id="@+id/controllerListItemCopyImageButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="0.45"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/img_copy"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <com.sys_ky.bletankcontroller.control.CustomImageButton
+            android:id="@+id/controllerListItemDeleteImageButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="0.45"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/img_delete"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

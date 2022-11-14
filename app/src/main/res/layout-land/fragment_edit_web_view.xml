@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:clickable="true"
+    tools:context=".EditWebViewFragment">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/editWebViewGuidelineTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/editWebViewGuidelineBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.85" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/editWebViewGuidelineHorizon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/editWebViewGuidelineVertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.35" />
+
+    <View
+        android:id="@+id/editWebViewLine1"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/editWebViewGuidelineHorizon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editWebViewGuidelineHorizon"
+        android:background="@color/black" />
+
+    <View
+        android:id="@+id/editWebViewLine2"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/editWebViewGuidelineVertical"
+        app:layout_constraintStart_toStartOf="@+id/editWebViewGuidelineVertical"
+        app:layout_constraintTop_toTopOf="@+id/editWebViewGuidelineHorizon"
+        android:background="@color/black" />
+
+    <View
+        android:id="@+id/editWebViewLine3"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/editWebViewGuidelineHorizon"
+        app:layout_constraintTop_toBottomOf="parent"
+        android:background="@color/black" />
+
+    <View
+        android:id="@+id/editWebViewLine4"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editWebViewGuidelineHorizon"
+        android:background="@color/black" />
+
+    <EditText
+        android:id="@+id/editWebViewControllerNameTextView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/black"
+        android:enabled="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/editWebViewGuidelineTop" />
+
+    <TextView
+        android:id="@+id/editWebViewTextView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="16dp"
+        android:singleLine="false"
+        android:text="@string/edit_webview_title"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/editWebViewGuidelineHorizon"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <WebView
+        android:id="@+id/editWebViewSampleWebView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginBottom="64dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/editWebViewGuidelineVertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editWebViewGuidelineHorizon" />
+
+    <TextView
+        android:id="@+id/editWebViewTextView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/edit_webview_url"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/editWebViewGuidelineVertical"
+        app:layout_constraintTop_toTopOf="@+id/editWebViewGuidelineHorizon" />
+
+    <EditText
+        android:id="@+id/editWebViewUrlEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="text"
+        android:maxLines="1"
+        android:imeOptions="actionDone"
+        android:textColor="@color/black"
+        android:theme="@style/EditTextStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/editWebViewGuidelineVertical"
+        app:layout_constraintTop_toBottomOf="@+id/editWebViewTextView2" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/editWebViewGuidelineBottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editWebViewGuidelineVertical"
+        app:layout_constraintEnd_toEndOf="parent" >
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <com.sys_ky.bletankcontroller.control.CustomImageButton
+            android:id="@+id/editWebViewFixImageButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="16dp"
+            android:background="@null"
+            android:scaleType="fitEnd"
+            android:src="@drawable/img_fix"
+            android:layout_weight="0.5" />
+
+        <com.sys_ky.bletankcontroller.control.CustomImageButton
+            android:id="@+id/editWebViewBackImageButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="16dp"
+            android:background="@null"
+            android:scaleType="fitEnd"
+            android:src="@drawable/img_back"
+            android:layout_weight="0.5"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

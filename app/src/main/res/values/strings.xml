@@ -1,0 +1,96 @@
+<resources>
+    <string name="app_name">BleTankController</string>
+    <string name="help_title">ヘルプ</string>
+    <string name="help1">概要</string>
+    <string name="help1_1">BleTankControllerとは、BleでTankをControllerするのだ！！</string>
+    <string name="help2">ホーム画面</string>
+    <string name="help2_1">接続 － 接続画面に行くぞ！\n設定 － 設定画面に行くぞ！\nヘルプ ― ヘルプ画面に行くぞ！</string>
+    <string name="setting_title">設定一覧</string>
+    <string name="base_setting_title">デフォルトのＵＵＩＤを設定します。</string>
+    <string name="base_setting_subtitle1">■ＵＵＩＤ（サービス）</string>
+    <string name="base_setting_subtitle2">■ＵＵＩＤ（キャラクタリスティック_ＴＸ）</string>
+    <string name="base_setting_subtitle3">■ＵＵＩＤ（キャラクタリスティック_ＲＸ）</string>
+    <string name="hint_uuid">XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX</string>
+    <string name="base_setting_service_help">BLE通信を行うサービスのUUIDを設定します。\n必ず接続先機器と一致している必要があります。</string>
+    <string name="base_setting_tx_help">BLE通信のサービス内で接続先機器へデータを送信するためするのキャラクタリスティックのUUIDを設定します。\n必ず接続先機器と一致している必要があります。</string>
+    <string name="base_setting_rx_help">BLE通信のサービス内で接続先機器からデータを受信するためのキャラクタリスティックのUUIDを設定します。\n接続先機器と一致していない場合でも通信できますが、正しく動作しない可能性があります。</string>
+    <string name="uuid_edit_title">■ＵＵＩＤを変更します。</string>
+    <string name="error_uuid">正しい桁数、書式で入力してください。\n「XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX」\n1-9 or a-f or A-F only</string>
+    <string name="update_normal">更新しました。</string>
+    <string name="save_normal">保存しました。</string>
+    <string name="delete_normal">削除しました。</string>
+    <string name="info">Info</string>
+    <string name="error">Error</string>
+    <string name="confirm">Confirm</string>
+    <string name="alert">Alert</string>
+    <string name="ok">OK</string>
+    <string name="ng">NG</string>
+    <string name="cancel">Cancel</string>
+    <string name="controller_list_title">■コントローラーレイアウト一覧</string>
+    <string name="controller_layout_edit_text">編集</string>
+    <string name="controller_layout_confirm_save">レイアウトを保存します。よろしいですか。</string>
+    <string name="controller_layout_error_name_empty">コントローラー名を入力してください。</string>
+    <string name="controller_layout_error_no_control">1つ以上コントロールを配置してください。</string>
+    <string name="controller_layout_confirm_back">保存せず戻ります。よろしいですか。</string>
+    <string name="controller_layout_default_name">コントローラーレイアウト</string>
+    <string name="edit_button_title">■ボタン編集</string>
+    <string name="edit_button_text">■テキスト</string>
+    <string name="edit_button_send_value">■送信値</string>
+    <string name="edit_button_confirm_back">変更を破棄します。よろしいですか。</string>
+    <string name="edit_stick_title">■スティック編集</string>
+    <string name="edit_stick_step">■段階数</string>
+    <string name="edit_stick_split">■分割数</string>
+    <string name="edit_stick_alert_edit_send">段階数または分割数を変更している場合、送信値が初期値となります。</string>
+    <string name="edit_webview_title">■ウェブビュー編集</string>
+    <string name="edit_webview_url">■URL</string>
+    <string name="controller_list_confirm_delete">レイアウトを削除します。\nよろしいですか。</string>
+    <string name="controller_list_confirm_delete2">既に使用されているレイアウトを削除します。\nよろしいですか。</string>
+    <string name="canvas_error_overlap">重ねることはできません。</string>
+    <string name="connect_title">■スキャン機器一覧</string>
+    <string name="connect_error_permission">権限が不足しています。\n権限を付与してから再試行してください。</string>
+    <string name="connect_error_service_not_found">接続しましたがサービスを取得できませんでした、\n設定を確認してください。\nUUIDを変更して接続を再試行しますか。</string>
+    <string name="connect_error_characteristic_not_found">接続しサービスを取得しましたがキャラクタリスティックを取得できませんでした、\n設定を確認してください。\nUUIDを変更して接続を再試行しますか。</string>
+    <string name="connect_error_gatt_not_found">GATTサーバを取得できませんでした、\n接続機器の状態を確認し、もう一度接続を試行してください。</string>
+    <string name="connect_error_connect_failed">接続できませんでした、\n接続機器の状態を確認し、もう一度接続を試行してください。</string>
+    <string name="connect_error_rx_not_found">接続し送信準備はできましたが、受信用のキャラクタリスティックが取得できなかったため接続先機器からのデータ受信はできません。\nOKでそのまま続行、キャンセルでUUID変更画面に遷移します。</string>
+    <string name="connect_success">接続しました。</string>
+    <string name="main_error_permission">指定された権限を付与しない場合、本アプリは使用できません。</string>
+    <string name="main_error_bluetooth_not">BluetoothがOnにされなかったため、終了します。</string>
+    <string name="main_error_bluetooth_support">Bluetoothがサポートされていないため、終了します。</string>
+    <string name="connection_edit_subtitle1">■接続先名</string>
+    <string name="connection_edit_subtitle2">■コントローラーレイアウト</string>
+    <string name="connection_edit_subtitle3">■イメージ</string>
+    <string name="connection_edit_confirm_back">編集を破棄して前画面に戻ります。\nよろしいですか。</string>
+    <string name="connection_edit_error_noname">接続先名を入力してください。</string>
+    <string name="connection_edit_confirm_fix">接続先設定を保存します。\nよろしいですか。</string>
+    <string name="controller_pad_confirm_end">切断して終了します。\nよろしいですか。</string>
+    <string name="saved_connection_title">■保存済み接続先設定</string>
+    <string name="saved_connection_delete">接続先設定を削除します。\nよろしいですか。</string>
+    <string name="setting_confirm_initialize">保存されている情報をすべて削除し、インストール時の状態に初期化します。\nよろしいですか。</string>
+    <string name="setting_confirm_initialize2">実行した場合、元に戻すことはできません。\n本当によろしいですか。</string>
+    <string name="setting_initialize_end">初期化しました。</string>
+    <string name="activity_confirm_end">アプリケーションを終了します。\nよろしいですか。</string>
+
+    <string-array name="step_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <string-array name="split_array">
+        <item>4</item>
+        <item>8</item>
+        <item>12</item>
+        <item>16</item>
+    </string-array>
+
+    <string-array name="control_array">
+        <item>ボタン</item>
+        <item>スティック</item>
+        <item>ウェブビュー</item>
+    </string-array>
+
+    <string name="hello_blank_fragment">hello_blank_fragment</string>
+
+</resources>

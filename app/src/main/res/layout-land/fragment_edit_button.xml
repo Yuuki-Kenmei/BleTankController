@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:clickable="true"
+    tools:context=".EditButtonFragment">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/editButtonGuidelineTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/editButtonGuidelineBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.85" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/editButtonGuidelineHorizon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/editButtonGuidelineVertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.35" />
+
+    <View
+        android:id="@+id/editButtonLine1"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/editButtonGuidelineHorizon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editButtonGuidelineHorizon"
+        android:background="@color/black" />
+
+    <View
+        android:id="@+id/editButtonLine2"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/editButtonGuidelineVertical"
+        app:layout_constraintStart_toStartOf="@+id/editButtonGuidelineVertical"
+        app:layout_constraintTop_toTopOf="@+id/editButtonGuidelineHorizon"
+        android:background="@color/black" />
+
+    <View
+        android:id="@+id/editButtonLine3"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/editButtonGuidelineHorizon"
+        app:layout_constraintTop_toBottomOf="parent"
+        android:background="@color/black" />
+
+    <View
+        android:id="@+id/editButtonLine4"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editButtonGuidelineHorizon"
+        android:background="@color/black" />
+
+    <EditText
+        android:id="@+id/editButtonControllerNameTextView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/black"
+        android:enabled="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/editButtonGuidelineTop" />
+
+    <TextView
+        android:id="@+id/editButtonTextView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="16dp"
+        android:singleLine="false"
+        android:text="@string/edit_button_title"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/editButtonGuidelineHorizon"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/editButtonSampleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/editButtonGuidelineVertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editButtonGuidelineHorizon" />
+
+    <TextView
+        android:id="@+id/editButtonTextView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/edit_button_text"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/editButtonGuidelineVertical"
+        app:layout_constraintTop_toTopOf="@+id/editButtonGuidelineHorizon" />
+
+    <TextView
+        android:id="@+id/editButtonTextView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/edit_button_send_value"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/editButtonGuidelineVertical"
+        app:layout_constraintTop_toBottomOf="@+id/editButtonTextEditText" />
+
+    <EditText
+        android:id="@+id/editButtonTextEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="text"
+        android:maxLines="1"
+        android:imeOptions="actionDone"
+        android:textColor="@color/black"
+        android:maxLength="20"
+        android:theme="@style/EditTextStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/editButtonGuidelineVertical"
+        app:layout_constraintTop_toBottomOf="@+id/editButtonTextView2" />
+
+    <EditText
+        android:id="@+id/editButtonSendValueEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="text"
+        android:maxLines="1"
+        android:imeOptions="actionDone"
+        android:textColor="@color/black"
+        android:maxLength="20"
+        android:theme="@style/EditTextStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/editButtonGuidelineVertical"
+        app:layout_constraintTop_toBottomOf="@+id/editButtonTextView3" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/editButtonGuidelineBottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editButtonGuidelineVertical"
+        app:layout_constraintEnd_toEndOf="parent" >
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <com.sys_ky.bletankcontroller.control.CustomImageButton
+            android:id="@+id/editButtonFixImageButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="16dp"
+            android:background="@null"
+            android:scaleType="fitEnd"
+            android:src="@drawable/img_fix"
+            android:layout_weight="0.5" />
+
+        <com.sys_ky.bletankcontroller.control.CustomImageButton
+            android:id="@+id/editButtonBackImageButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="16dp"
+            android:background="@null"
+            android:scaleType="fitEnd"
+            android:src="@drawable/img_back"
+            android:layout_weight="0.5"/>
+
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

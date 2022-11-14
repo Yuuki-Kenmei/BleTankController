@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/AndroidProject/BleTankController/app/src/main/res/drawable/border_rectangle.xml" value="0.1" />
+        <entry key="..\:/AndroidProject/BleTankController/app/src/main/res/drawable/border_rectangle2.xml" value="0.2045" />
+        <entry key="..\:/AndroidProject/BleTankController/app/src/main/res/drawable/border_rectangle3.xml" value="0.133" />
+        <entry key="..\:/AndroidProject/BleTankController/app/src/main/res/drawable/border_rectangle4.xml" value="0.2045" />
+        <entry key="..\:/AndroidProject/BleTankController/app/src/main/res/drawable/image_button_press.xml" value="0.1" />
+        <entry key="..\:/AndroidProject/BleTankController/app/src/main/res/drawable/test_shape.xml" value="0.1135" />
+        <entry key="..\:/AndroidProject/BleTankController/app/src/main/res/font/press_start_2p.xml" value="0.1625" />
+        <entry key="..\:/AndroidProject/BleTankController/app/src/main/res/layout-land/activity_main.xml" value="0.22" />
+        <entry key="..\:/AndroidProject/BleTankController/app/src/main/res/layout-land/controller_list_item.xml" value="0.25" />
+        <entry key="..\:/AndroidProject/BleTankController/app/src/main/res/layout-land/fragment_base_setting.xml" value="0.22" />
+        <entry key="..\:/AndroidProject/BleTankController/app/src/main/res/layout-land/fragment_connect.xml" value="0.18" />
+        <entry key="..\:/AndroidProject/BleTankController/app/src/main/res/layout-land/fragment_control_list.xml" value="0.21779425393883226" />
+        <entry key="..\:/AndroidProject/BleTankController/app/src/main/res/layout-land/fragment_controller_layout.xml" value="0.2359375" />
+        <entry key="..\:/AndroidProject/BleTankController/app/src/main/res/layout-land/fragment_controller_list.xml" value="0.2359375" />
+        <entry key="..\:/AndroidProject/BleTankController/app/src/main/res/layout-land/fragment_edit_button.xml" value="0.21779425393883226" />
+        <entry key="..\:/AndroidProject/BleTankController/app/src/main/res/layout-land/fragment_edit_stick.xml" value="0.21171171171171171" />
+        <entry key="..\:/AndroidProject/BleTankController/app/src/main/res/layout-land/fragment_edit_stick_send.xml" value="0.21779425393883226" />
+        <entry key="..\:/AndroidProject/BleTankController/app/src/main/res/layout-land/fragment_help.xml" value="0.22" />
+        <entry key="..\:/AndroidProject/BleTankController/app/src/main/res/layout-land/fragment_menu_buttons.xml" value="0.2" />
+        <entry key="..\:/AndroidProject/BleTankController/app/src/main/res/layout-land/fragment_now_loading.xml" value="0.25" />
+        <entry key="..\:/AndroidProject/BleTankController/app/src/main/res/layout-land/fragment_setting.xml" value="0.19091751621872105" />
+        <entry key="..\:/AndroidProject/BleTankController/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/AndroidProject/BleTankController/app/src/main/res/layout/connect_list_item.xml" value="0.1" />
+        <entry key="..\:/AndroidProject/BleTankController/app/src/main/res/layout/controller_list_item.xml" value="0.22" />
+        <entry key="..\:/AndroidProject/BleTankController/app/src/main/res/layout/fragment_base_setting.xml" value="0.5" />
+        <entry key="..\:/AndroidProject/BleTankController/app/src/main/res/layout/fragment_edit_button.xml" value="0.12239583333333333" />
+        <entry key="..\:/AndroidProject/BleTankController/app/src/main/res/layout/fragment_help.xml" value="0.20427305888483585" />
+        <entry key="..\:/AndroidProject/BleTankController/app/src/main/res/layout/fragment_menu_buttons.xml" value="0.20427305888483585" />
+        <entry key="..\:/AndroidProject/BleTankController/app/src/main/res/layout/fragment_now_loading.xml" value="0.242313705054716" />
+        <entry key="..\:/AndroidProject/BleTankController/app/src/main/res/layout/fragment_setting.xml" value="0.1" />
+        <entry key="..\:/AndroidProject/BleTankController/app/src/main/res/layout/spinner_item.xml" value="0.26145833333333335" />
+        <entry key="..\:/AndroidProject/BleTankController/app/src/main/res/layout/spinner_layout.xml" value="0.12135416666666667" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

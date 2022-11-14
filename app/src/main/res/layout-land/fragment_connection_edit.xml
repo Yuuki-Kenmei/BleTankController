@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ConnectionEditFragment" >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/connectionEditConstraintLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/connectionEditGuideLineTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/connectionEditGuideLineTop">
+
+            <TextView
+                android:id="@+id/connectionEditTitleTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif"
+                android:text="XX:XX:XX:XX:XX:XX"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:layout_weight="1" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5">
+
+                <com.sys_ky.bletankcontroller.control.CustomImageButton
+                    android:id="@+id/connectionEditFixImageButton"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@null"
+                    android:scaleType="fitEnd"
+                    android:src="@drawable/img_fix"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/connectionEditBackImageButton"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.sys_ky.bletankcontroller.control.CustomImageButton
+                    android:id="@+id/connectionEditBackImageButton"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@null"
+                    android:scaleType="fitEnd"
+                    android:src="@drawable/img_back"
+                    app:layout_constraintStart_toEndOf="@+id/connectionEditFixImageButton"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/border_rectangle4"
+            app:layout_constraintTop_toBottomOf="@+id/connectionEditGuideLineTop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:layout_weight="0.7">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5">
+
+                    <TextView
+                        android:id="@+id/connectionEditSubtitle1TextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/connection_edit_subtitle1"
+                        android:textColor="@color/black"
+                        android:textSize="24sp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <EditText
+                        android:id="@+id/connectionEditNameEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginEnd="8dp"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:maxLength="36"
+                        android:maxLines="1"
+                        android:textColor="@color/black"
+                        android:theme="@style/EditTextStyle"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/connectionEditSubtitle1TextView" />
+
+                    <TextView
+                        android:id="@+id/connectionEditSubtitle2TextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/connection_edit_subtitle2"
+                        android:textColor="@color/black"
+                        android:textSize="24sp"
+                        app:layout_constraintTop_toBottomOf="@+id/connectionEditNameEditText"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/connectionEditRecyclerView"
+                        android:layout_width="0dp"
+                        android:layout_height="100dp"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layoutManager="LinearLayoutManager"
+                        app:layout_constraintTop_toBottomOf="@+id/connectionEditSubtitle2TextView"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5" >
+
+                    <TextView
+                        android:id="@+id/connectionEditSubtitle3TextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/connection_edit_subtitle3"
+                        android:textColor="@color/black"
+                        android:textSize="24sp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <com.sys_ky.bletankcontroller.control.CustomImageButton
+                        android:id="@+id/connectionEditSelectImageButton"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@null"
+                        android:scaleType="fitStart"
+                        android:src="@drawable/img_select"
+                        app:layout_constraintBottom_toBottomOf="@+id/connectionEditSubtitle3TextView"
+                        app:layout_constraintStart_toEndOf="@+id/connectionEditSubtitle3TextView"
+                        app:layout_constraintEnd_toStartOf="@+id/connectionEditClearImageButton"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.sys_ky.bletankcontroller.control.CustomImageButton
+                        android:id="@+id/connectionEditClearImageButton"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@null"
+                        android:scaleType="fitStart"
+                        android:src="@drawable/img_clear"
+                        app:layout_constraintBottom_toBottomOf="@+id/connectionEditSubtitle3TextView"
+                        app:layout_constraintStart_toEndOf="@+id/connectionEditSelectImageButton"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/connectionEditImageView"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:scaleType="fitXY"
+                        android:background="@drawable/border_rectangle2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/connectionEditSubtitle3TextView" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.3">
+
+                <TextView
+                    android:id="@+id/connectionEditServiceTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/base_setting_subtitle1"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <com.sys_ky.bletankcontroller.control.CustomImageButton
+                    android:id="@+id/connectionEditServiceImageButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:background="@null"
+                    android:src="@drawable/img_info"
+                    android:scaleType="fitStart"
+                    app:layout_constraintBottom_toBottomOf="@+id/connectionEditServiceTextView"
+                    app:layout_constraintStart_toEndOf="@+id/connectionEditServiceTextView"
+                    app:layout_constraintTop_toTopOf="@+id/connectionEditServiceTextView" />
+
+                <EditText
+                    android:id="@+id/connectionEditServiceEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:hint="@string/hint_uuid"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:maxLength="36"
+                    android:maxLines="1"
+                    android:textColor="@color/black"
+                    android:theme="@style/EditTextStyle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/connectionEditServiceTextView" />
+
+                <TextView
+                    android:id="@+id/connectionEditTxTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/base_setting_subtitle2"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@id/connectionEditServiceEditText"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <com.sys_ky.bletankcontroller.control.CustomImageButton
+                    android:id="@+id/connectionEditTxImageButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:background="@null"
+                    android:src="@drawable/img_info"
+                    android:scaleType="fitStart"
+                    app:layout_constraintBottom_toBottomOf="@+id/connectionEditTxTextView"
+                    app:layout_constraintStart_toEndOf="@+id/connectionEditTxTextView"
+                    app:layout_constraintTop_toTopOf="@+id/connectionEditTxTextView" />
+
+                <EditText
+                    android:id="@+id/connectionEditTxEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:hint="@string/hint_uuid"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:maxLength="36"
+                    android:maxLines="1"
+                    android:textColor="@color/black"
+                    android:theme="@style/EditTextStyle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/connectionEditTxTextView" />
+
+                <TextView
+                    android:id="@+id/connectionEditRxTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/base_setting_subtitle3"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@id/connectionEditTxEditText"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <com.sys_ky.bletankcontroller.control.CustomImageButton
+                    android:id="@+id/connectionEditRxImageButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:background="@null"
+                    android:src="@drawable/img_info"
+                    android:scaleType="fitStart"
+                    app:layout_constraintBottom_toBottomOf="@+id/connectionEditRxTextView"
+                    app:layout_constraintStart_toEndOf="@+id/connectionEditRxTextView"
+                    app:layout_constraintTop_toTopOf="@+id/connectionEditRxTextView" />
+
+                <EditText
+                    android:id="@+id/connectionEditRxEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:hint="@string/hint_uuid"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:maxLength="36"
+                    android:maxLines="1"
+                    android:textColor="@color/black"
+                    android:theme="@style/EditTextStyle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/connectionEditRxTextView" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
