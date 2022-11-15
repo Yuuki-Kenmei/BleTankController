@@ -133,20 +133,12 @@ class ControllerLayoutFragment : Fragment() {
             }
         })
 
-        return view
-    }
-
-    override fun onStart() {
-        super.onStart()
-
         val dbCtrl = DbCtrl.getInstance(requireContext())
 
         if (mParamLayoutId!! < 0) {
             //新規作成
-            //val controllerLayoutCount: Int = dbCtrl.CONTROLLER_LAYOUT().selectCount()
             val controllerLayoutMaxId: Int = dbCtrl.ControllerLayout().selectMaxId()
-            val controllerLayoutNameEditText = requireView().findViewById<EditText>(R.id.controllerLayoutNameEditText)
-            //clayNameEditText.setText(resources.getText(R.string.clay_default_name).toString() + controllerLayoutCount.toString(), TextView.BufferType.NORMAL)
+            val controllerLayoutNameEditText = view.findViewById<EditText>(R.id.controllerLayoutNameEditText)
             controllerLayoutNameEditText.setText(resources.getText(R.string.controller_layout_default_name).toString() + (controllerLayoutMaxId + 1).toString(), TextView.BufferType.NORMAL)
         } else {
             //編集
@@ -154,7 +146,7 @@ class ControllerLayoutFragment : Fragment() {
             val controllerLayoutDetailList: List<ControllerLayoutDetail> = dbCtrl.ControllerLayoutDetail().selectByLayoutId(mParamLayoutId!!)
             val controllerLayout: ControllerLayout = controllerLayoutList[0]
 
-            val controllerLayoutNameEditText = requireView().findViewById<EditText>(R.id.controllerLayoutNameEditText)
+            val controllerLayoutNameEditText = view.findViewById<EditText>(R.id.controllerLayoutNameEditText)
             if (!mCopyFlg!!) {
                 controllerLayoutNameEditText.setText(controllerLayout.layout_name, TextView.BufferType.NORMAL)
             } else {
@@ -184,8 +176,9 @@ class ControllerLayoutFragment : Fragment() {
                 viewConfigList.add(viewConfig)
             }
 
-            requireView().findViewById<CanvasView>(R.id.controllerLayoutCanvasView).initFromViewConfigList(viewConfigList)
+            view.findViewById<CanvasView>(R.id.controllerLayoutCanvasView).initFromViewConfigList(viewConfigList)
         }
+        return view
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
