@@ -29,6 +29,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.app.ActivityCompat
+import androidx.core.graphics.blue
+import androidx.core.graphics.green
+import androidx.core.graphics.red
 import androidx.fragment.app.FragmentManager
 import androidx.transition.Slide
 import com.sys_ky.bletankcontroller.ble.BlePeripheral
@@ -195,7 +198,7 @@ class MainActivity : AppCompatActivity() {
             while(stickBlock * 2 > widthIntervalCount) {
                 stickBlock--
             }
-            while(buttonWidthBlock * 2 > widthIntervalCount) {
+            while(buttonWidthBlock * 2 + 1 > widthIntervalCount) {
                 buttonWidthBlock--
             }
 
@@ -222,10 +225,10 @@ class MainActivity : AppCompatActivity() {
                     stick2BR = it.value
                 }
 
-                if (it.key[0] == widthIntervalCount - buttonWidthBlock * 2 && it.key[1] == heightIntervalCount - stickBlock - buttonHeightBlock) {
+                if (it.key[0] == widthIntervalCount - (buttonWidthBlock * 2 + 1) && it.key[1] == heightIntervalCount - stickBlock - buttonHeightBlock) {
                     button1TL = it.value
                 }
-                if (it.key[0] == widthIntervalCount - buttonWidthBlock && it.key[1] == heightIntervalCount - stickBlock) {
+                if (it.key[0] == widthIntervalCount - (buttonWidthBlock + 1) && it.key[1] == heightIntervalCount - stickBlock) {
                     button1BR = it.value
                 }
 
@@ -260,7 +263,13 @@ class MainActivity : AppCompatActivity() {
                     stick1TL.x,
                     "",
                     step,
-                    split
+                    split,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
                 )
             )
             val sendValueMap1: SendValueMap = SendValueMap.createInitStickSendValueMap(step, split, controlId)
@@ -289,7 +298,13 @@ class MainActivity : AppCompatActivity() {
                     stick2TL.x,
                     "",
                     step,
-                    split
+                    split,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
                 )
             )
             val sendValueMap2 = SendValueMap.createInitStickSendValueMap(step, split, controlId)
@@ -318,7 +333,13 @@ class MainActivity : AppCompatActivity() {
                     button1TL.x,
                     "BUTTON1",
                     step,
-                    split
+                    split,
+                    Constants.cDefaultButtonBackColor.red,
+                    Constants.cDefaultButtonBackColor.green,
+                    Constants.cDefaultButtonBackColor.blue,
+                    Constants.cDefaultButtonTextColor.red,
+                    Constants.cDefaultButtonTextColor.green,
+                    Constants.cDefaultButtonTextColor.blue
                 )
             )
             controlSendValueList.add(
@@ -344,7 +365,13 @@ class MainActivity : AppCompatActivity() {
                     button2TL.x,
                     "BUTTON2",
                     step,
-                    split
+                    split,
+                    Constants.cDefaultButtonBackColor.red,
+                    Constants.cDefaultButtonBackColor.green,
+                    Constants.cDefaultButtonBackColor.blue,
+                    Constants.cDefaultButtonTextColor.red,
+                    Constants.cDefaultButtonTextColor.green,
+                    Constants.cDefaultButtonTextColor.blue
                 )
             )
             controlSendValueList.add(
@@ -417,6 +444,7 @@ class MainActivity : AppCompatActivity() {
         private var mEditStickFragment = EditStickFragment()
         private var mEditStickSendFragment = EditStickSendFragment()
         private var mEditWebViewFragment = EditWebViewFragment()
+        private var mEditColorFragment = EditColorFragment()
         private var mConnectFragment = ConnectFragment()
         private var mUuidEditFragment = UuidEditFragment()
         private var mConnectionEditFragment = ConnectionEditFragment()
@@ -505,6 +533,11 @@ class MainActivity : AppCompatActivity() {
         //コントローラーレイアウトフラグメント取得
         fun getControllerLayoutFragment(): ControllerLayoutFragment {
             return mControllerLayoutFragment
+        }
+
+        //ボタン編集フラグメント取得
+        fun getEditButtonFragment(): EditButtonFragment {
+            return mEditButtonFragment
         }
 
         //スティック編集フラグメント取得
@@ -740,6 +773,31 @@ class MainActivity : AppCompatActivity() {
             }
             val fragmentTransaction = mFragmentManager.beginTransaction()
             fragmentTransaction.remove(mEditWebViewFragment)
+            fragmentTransaction.commit()
+            mFragmentManager.popBackStack()
+        }
+
+        fun showEditColorFragment(viewId: Int, kbn: Int) {
+            mEditColorFragment = EditColorFragment.newInstance(viewId, kbn)
+            val fade = Fade()
+            mEditColorFragment.enterTransition = fade
+            mEditColorFragment.exitTransition = fade
+
+            if (mFragmentManager.findFragmentById(mEditColorFragment.id) != null) {
+                return
+            }
+            val fragmentTransaction = mFragmentManager.beginTransaction()
+            fragmentTransaction.add(mFragmentContainerConstraintLayout.id, mEditColorFragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+        }
+
+        fun closeEditColorFragment() {
+            if (mFragmentManager.findFragmentById(mEditColorFragment.id) == null) {
+                return
+            }
+            val fragmentTransaction = mFragmentManager.beginTransaction()
+            fragmentTransaction.remove(mEditColorFragment)
             fragmentTransaction.commit()
             mFragmentManager.popBackStack()
         }

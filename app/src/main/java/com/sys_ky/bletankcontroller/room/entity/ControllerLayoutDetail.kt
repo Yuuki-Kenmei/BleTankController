@@ -14,5 +14,11 @@ data class ControllerLayoutDetail (
     @ColumnInfo(name = "START") val start: Int,
     @ColumnInfo(name = "TEXT") val text: String,
     @ColumnInfo(name = "STEP") val step: Int,
-    @ColumnInfo(name = "SPLIT") val split: Int
+    @ColumnInfo(name = "SPLIT") val split: Int,
+    @ColumnInfo(name = "C1_RED") val c1_red: Int,
+    @ColumnInfo(name = "C1_GREEN") val c1_green: Int,
+    @ColumnInfo(name = "C1_BLUE") val c1_blue: Int,
+    @ColumnInfo(name = "C2_RED") val c2_red: Int,
+    @ColumnInfo(name = "C2_GREEN") val c2_green: Int,
+    @ColumnInfo(name = "C2_BLUE") val c2_blue: Int
 )

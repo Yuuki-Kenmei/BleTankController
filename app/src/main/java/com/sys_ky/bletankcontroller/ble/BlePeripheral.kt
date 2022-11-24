@@ -13,8 +13,6 @@ import android.bluetooth.le.ScanResult
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
-import com.sys_ky.bletankcontroller.MainActivity
 import com.sys_ky.bletankcontroller.common.Constants
 import java.util.*
 

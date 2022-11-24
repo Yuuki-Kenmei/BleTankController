@@ -7,6 +7,7 @@
 package com.sys_ky.bletankcontroller
 
 import android.content.DialogInterface
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,6 +15,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.core.graphics.blue
+import androidx.core.graphics.green
+import androidx.core.graphics.red
 import com.sys_ky.bletankcontroller.common.SendValueMap
 import com.sys_ky.bletankcontroller.common.ViewConfig
 import com.sys_ky.bletankcontroller.control.CanvasView
@@ -165,6 +169,8 @@ class ControllerLayoutFragment : Fragment() {
                 viewConfig.text = controllerLayoutDetail.text
                 viewConfig.step = controllerLayoutDetail.step
                 viewConfig.split = controllerLayoutDetail.split
+                viewConfig.color1 = Color.rgb(controllerLayoutDetail.c1_red, controllerLayoutDetail.c1_green, controllerLayoutDetail.c1_blue)
+                viewConfig.color2 = Color.rgb(controllerLayoutDetail.c2_red, controllerLayoutDetail.c2_green, controllerLayoutDetail.c2_blue)
 
                 var sendValueMap: SendValueMap = SendValueMap()
                 val controlSendValueList: List<ControlSendValue> = dbCtrl.ControlSendValue().selectByIds(controllerLayoutDetail.layout_id, controllerLayoutDetail.control_id)
@@ -241,7 +247,13 @@ class ControllerLayoutFragment : Fragment() {
                     viewConfig.start,
                     viewConfig.text,
                     viewConfig.step,
-                    viewConfig.split
+                    viewConfig.split,
+                    viewConfig.color1.red,
+                    viewConfig.color1.green,
+                    viewConfig.color1.blue,
+                    viewConfig.color2.red,
+                    viewConfig.color2.green,
+                    viewConfig.color2.blue
                 )
             )
 

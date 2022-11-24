@@ -7,6 +7,8 @@
 
 package com.sys_ky.bletankcontroller.common
 
+import android.graphics.Color
+
 class ViewConfig {
     var viewType: Int = 0
     var start: Int = 0
@@ -17,4 +19,6 @@ class ViewConfig {
     var step: Int = 2
     var split: Int = 8
     var sendValueMap: SendValueMap = SendValueMap()
+    var color1 = Constants.cDefaultButtonBackColor
+    var color2 = Constants.cDefaultButtonTextColor
 }

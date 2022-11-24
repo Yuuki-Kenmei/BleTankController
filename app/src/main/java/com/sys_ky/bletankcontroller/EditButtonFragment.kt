@@ -8,6 +8,7 @@ package com.sys_ky.bletankcontroller
 
 import android.content.DialogInterface
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -76,9 +77,20 @@ class EditButtonFragment : Fragment() {
             return@setOnEditorActionListener false
         }
 
+        val editButtonBackColorButton = view.findViewById<CustomImageButton>(R.id.editButtonBackColorButton)
+        editButtonBackColorButton.setOnClickListener {
+            MainActivity.showEditColorFragment(mParamViewId!!, 1)
+        }
+        val editButtonTextColorButton = view.findViewById<CustomImageButton>(R.id.editButtonTextColorButton)
+        editButtonTextColorButton.setOnClickListener {
+            MainActivity.showEditColorFragment(mParamViewId!!, 2)
+        }
+
         val editButtonSampleButton = view.findViewById<Button>(R.id.editButtonSampleButton)
         editButtonSampleButton.setTextColor(Color.RED)
         editButtonSampleButton.text = mViewConfig!!.text
+        editButtonSampleButton.setBackgroundColor(mViewConfig!!.color1)
+        editButtonSampleButton.setTextColor(mViewConfig!!.color2)
         var setWidth = mViewConfig!!.width
         var setHeight = mViewConfig!!.height
         val maxWidth = (MainActivity.getFragmentContainer().width * 0.35).toInt()
@@ -150,12 +162,25 @@ class EditButtonFragment : Fragment() {
             override fun onOneClick(view: View) {
                 mViewConfig!!.text = editButtonTextEditText.text.toString()
                 mViewConfig!!.sendValueMap.setSendValue(0,0, editButtonSendValueEditText.text.toString())
+                mViewConfig!!.color1 = (editButtonSampleButton.background as ColorDrawable).color
+                mViewConfig!!.color2 = editButtonSampleButton.currentTextColor
                 MainActivity.getControllerLayoutFragment().refViewConfig(mParamViewId!!, mViewConfig!!)
                 MainActivity.closeEditButtonFragment()
             }
         })
 
         return view
+    }
+
+    fun applyColorChangedToSample(r: Int, g: Int, b: Int, kbn: Int) {
+        val editButtonSampleButton = requireView().findViewById<Button>(R.id.editButtonSampleButton)
+        val color = Color.rgb(r, g, b)
+        if (kbn == 1) {
+            editButtonSampleButton.setBackgroundColor(color)
+        } else if (kbn == 2) {
+            editButtonSampleButton.setTextColor(color)
+        }
+        editButtonSampleButton.invalidate()
     }
 
     companion object {

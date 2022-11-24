@@ -18,7 +18,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -110,7 +109,7 @@ class ConnectFragment : Fragment() {
                 if (it.isNullOrEmpty()) {
                     return@let
                 }
-                Log.d("bleNotifyViewModel",it)
+                //Log.d("bleNotifyViewModel",it)
 
                 MainActivity.closeNowLoadingFragment()
 
@@ -271,8 +270,6 @@ class ConnectFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        Log.d("","start")
-
         //スキャン
         startScan()
     }
@@ -432,7 +429,7 @@ class ConnectFragment : Fragment() {
         }
         if (!mTryConnectFlg) {
             mTryConnectFlg = true
-            Log.d("connectStart","")
+            //Log.d("connectStart","")
             MainActivity.gCurrentBlePeripheral = blePeripheral
             blePeripheral.connectGatt(requireContext())
             MainActivity.showNowLoadingFragment()

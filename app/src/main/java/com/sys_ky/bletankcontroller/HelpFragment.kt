@@ -59,10 +59,38 @@ class HelpFragment : Fragment() {
             }
         }
 
+        val helpTextView3 = view.findViewById<TextView>(R.id.helpTextView3)
+        val helpFoldLayout3 = view.findViewById<LinearLayout>(R.id.helpFoldLayout3)
+        helpTextView3.setOnClickListener {
+            if (helpFoldLayout3.visibility == View.GONE) {
+                helpFoldLayout3.visibility = View.VISIBLE
+                helpTextView3.text = "ー" + resources.getString(R.string.help3)
+            } else {
+                helpFoldLayout3.visibility = View.GONE
+                helpTextView3.text = "＋" + resources.getString(R.string.help3)
+            }
+        }
+
+        val helpTextView4 = view.findViewById<TextView>(R.id.helpTextView4)
+        val helpFoldLayout4 = view.findViewById<LinearLayout>(R.id.helpFoldLayout4)
+        helpTextView4.setOnClickListener {
+            if (helpFoldLayout4.visibility == View.GONE) {
+                helpFoldLayout4.visibility = View.VISIBLE
+                helpTextView4.text = "ー" + resources.getString(R.string.help4)
+            } else {
+                helpFoldLayout4.visibility = View.GONE
+                helpTextView4.text = "＋" + resources.getString(R.string.help4)
+            }
+        }
+
         helpFoldLayout1.visibility = View.GONE
         helpTextView1.text = "＋" + resources.getString(R.string.help1)
         helpFoldLayout2.visibility = View.GONE
         helpTextView2.text = "＋" + resources.getString(R.string.help2)
+        helpFoldLayout3.visibility = View.GONE
+        helpTextView3.text = "＋" + resources.getString(R.string.help3)
+        helpFoldLayout4.visibility = View.GONE
+        helpTextView4.text = "＋" + resources.getString(R.string.help4)
 
         return view
     }

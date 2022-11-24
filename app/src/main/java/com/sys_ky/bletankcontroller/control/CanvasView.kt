@@ -8,6 +8,7 @@ package com.sys_ky.bletankcontroller.control
 
 import android.content.Context
 import android.graphics.*
+import android.graphics.drawable.ColorDrawable
 import android.os.Handler
 import android.os.Looper
 import android.util.AttributeSet
@@ -475,7 +476,8 @@ class CanvasView constructor(context: Context, attrs: AttributeSet) :ConstraintL
                                 button.id = mPlacingViewId
                                 button.isAllCaps = false
                                 button.text = "BUTTON" + mButtonCount.toString()
-                                button.setTextColor(Color.RED)
+                                button.setBackgroundColor(Constants.cDefaultButtonBackColor)
+                                button.setTextColor(Constants.cDefaultButtonTextColor)
                                 button.setOnTouchListener { view, motionEvent ->
                                     return@setOnTouchListener onTouchChildEvent(view, motionEvent)
                                 }
@@ -904,22 +906,23 @@ class CanvasView constructor(context: Context, attrs: AttributeSet) :ConstraintL
         var config = ViewConfig()
         if (mViewConfigList.contains(viewId)) {
             config = mViewConfigList[viewId]!!
-
         } else {
             try {
                 val v: StickView = findViewById(viewId)
                 config.viewType = Constants.cViewTypeStick
-                config.text = ""
                 config.step = v.getStepNum()
                 config.split = v.getSplitNum()
                 config.sendValueMap = SendValueMap.createInitStickSendValueMap(v.getStepNum(), v.getSplitNum(), mStickViewNo[viewId]!!.toInt())
             } catch (e: Exception) {
                 try{
+                    val v: Button = findViewById(viewId)
                     config.viewType = Constants.cViewTypeButton
-                    config.text = findViewById<Button>(viewId).text.toString()
+                    config.text = v.text.toString()
                     val sendValueMap: SendValueMap = SendValueMap()
                     sendValueMap.setSendValue(0, 0, "!B!" + mButtonViewNo[viewId].toString())
                     config.sendValueMap = sendValueMap
+                    config.color1 = (v.background as ColorDrawable).color
+                    config.color2 = v.currentTextColor
                 } catch (e: Exception) {
                     config.viewType = Constants.cViewTypeWeb
                     config.text = ""
@@ -942,6 +945,8 @@ class CanvasView constructor(context: Context, attrs: AttributeSet) :ConstraintL
             Constants.cViewTypeButton -> {
                 val view = findViewById<TextView>(viewId)
                 view.text = config.text
+                view.setBackgroundColor(config.color1)
+                view.setTextColor(config.color2)
             }
             Constants.cViewTypeStick -> {
                 val view = findViewById<StickView>(viewId)
@@ -1020,7 +1025,8 @@ class CanvasView constructor(context: Context, attrs: AttributeSet) :ConstraintL
                     button.id = viewId
                     button.isAllCaps = false
                     button.text = viewConfig.text
-                    button.setTextColor(Color.RED)
+                    button.setBackgroundColor(viewConfig.color1)
+                    button.setTextColor(viewConfig.color2)
                     button.setOnTouchListener { view, motionEvent ->
                         return@setOnTouchListener onTouchChildEvent(view, motionEvent)
                     }

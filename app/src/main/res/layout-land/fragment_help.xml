@@ -84,6 +84,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/help1"
+                android:textSize="20sp"
                 android:textColor="@color/teal_700"
                 android:textStyle="bold" />
 
@@ -99,6 +100,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/help1_1"
+                    android:textSize="18sp"
                     android:textColor="@color/black" />
 
             </LinearLayout>
@@ -109,6 +111,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/help2"
                 android:textColor="@color/teal_700"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -123,9 +126,87 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/help2_1"
+                    android:textSize="18sp"
                     android:textColor="@color/black" />
 
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/helpTextView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/help3"
+                android:textColor="@color/teal_700"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/helpFoldLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/helpTextView3_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/help3_1"
+                    android:textSize="18sp"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/helpTextView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/help4"
+                android:textColor="@color/teal_700"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/helpFoldLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/helpTextView4_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/help4_1"
+                    android:textSize="18sp"
+                    android:textColor="@color/black" />
+                <TextView
+                    android:id="@+id/helpTextView4_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/help4_2"
+                    android:textSize="18sp"
+                    android:textColor="@color/black" />
+                <TextView
+                    android:id="@+id/helpTextView4_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/help4_3"
+                    android:textSize="18sp"
+                    android:textColor="@color/black" />
+                <TextView
+                    android:id="@+id/helpTextView4_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/help4_4"
+                    android:textSize="18sp"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="32dp" />
         </LinearLayout>
     </ScrollView>
 

@@ -9,7 +9,6 @@ package com.sys_ky.bletankcontroller
 import android.content.DialogInterface
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -23,6 +22,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.core.graphics.red
 import androidx.lifecycle.ViewModelProvider
 import com.sys_ky.bletankcontroller.ble.BleNotifyViewModel
 import com.sys_ky.bletankcontroller.ble.BleNotifyViewModelFactory
@@ -97,13 +97,21 @@ class ControllerPadFragment : Fragment() {
                     button.id = viewId
                     button.isAllCaps = false
                     button.text = controllerLayoutDetail.text
-                    button.setTextColor(Color.RED)
+                    button.setBackgroundColor(Color.rgb(controllerLayoutDetail.c1_red, controllerLayoutDetail.c1_green, controllerLayoutDetail.c1_blue))
+                    button.setTextColor(Color.rgb(controllerLayoutDetail.c2_red, controllerLayoutDetail.c2_green, controllerLayoutDetail.c2_blue))
                     button.setOnTouchListener { view, motionEvent ->
                         button.onTouchEvent(motionEvent)
                         when(motionEvent.action) {
                             MotionEvent.ACTION_DOWN -> {
+                                button.alpha = 0.5f
                                 sendValueBle(mSendValueList[view.id]!!.getSendValue(0,0))
-                                Log.d("button", mSendValueList[view.id]!!.getSendValue(0,0))
+                                //Log.d("button", mSendValueList[view.id]!!.getSendValue(0,0))
+                            }
+                            MotionEvent.ACTION_UP -> {
+                                button.alpha = 1.0f
+                            }
+                            MotionEvent.ACTION_CANCEL -> {
+                                button.alpha = 1.0f
                             }
                         }
                         return@setOnTouchListener true
@@ -120,7 +128,7 @@ class ControllerPadFragment : Fragment() {
                     stick.setOnStickChangeListener(object:StickView.OnStickChangeListener{
                         override fun onStickChangeEvent(view: StickView) {
                             sendValueBle(mSendValueList[view.id]!!.getSendValue(view.NowStopStep,view.NowStopSplit))
-                            Log.d("stick", mSendValueList[view.id]!!.getSendValue(view.NowStopStep,view.NowStopSplit).toString())
+                            //Log.d("stick", mSendValueList[view.id]!!.getSendValue(view.NowStopStep,view.NowStopSplit).toString())
                         }
                     })
                     controllerPadConstraintLayout.addView(stick)
