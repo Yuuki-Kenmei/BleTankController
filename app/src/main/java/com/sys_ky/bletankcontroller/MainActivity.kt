@@ -168,7 +168,17 @@ class MainActivity : AppCompatActivity() {
                 permissionArray.add(Manifest.permission.BLUETOOTH_SCAN)
             }
         }
-        permissionArray.add(Manifest.permission.READ_EXTERNAL_STORAGE)
+        if (Build.VERSION.SDK_INT > 32) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED) {
+                permissionArray.add(Manifest.permission.READ_MEDIA_IMAGES)
+            }
+        }
+        else {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                permissionArray.add(Manifest.permission.READ_EXTERNAL_STORAGE)
+            }
+        }
+
         if (permissionArray.size > 0) {
             requestPermissionLauncher.launch(permissionArray.toTypedArray())
         }
