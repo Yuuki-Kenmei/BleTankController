@@ -11,6 +11,7 @@ import android.annotation.SuppressLint
 import android.bluetooth.*
 import android.bluetooth.le.ScanResult
 import android.content.Context
+import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import com.sys_ky.bletankcontroller.common.Constants
@@ -100,12 +101,27 @@ class BlePeripheral constructor(scanResult: ScanResult?) {
             }
         }
 
-        override fun onCharacteristicChanged(gatt: BluetoothGatt?, characteristic: BluetoothGattCharacteristic?) {
-            super.onCharacteristicChanged(gatt, characteristic)
+        @Deprecated("Deprecated in Java")
+        @Suppress("DEPRECATION")
+        override fun onCharacteristicChanged(gatt: BluetoothGatt, characteristic: BluetoothGattCharacteristic) {
+            if (Build.VERSION.SDK_INT <= 32) {
+                super.onCharacteristicChanged(gatt, characteristic)
 
-            if (characteristic?.value != null) {
-                val str = String(characteristic.value)
-                setBleNotify(str)
+                if (characteristic.value != null) {
+                    val str = String(characteristic.value)
+                    setBleNotify(str)
+                }
+            }
+        }
+
+        override fun onCharacteristicChanged(gatt: BluetoothGatt, characteristic: BluetoothGattCharacteristic, value: ByteArray) {
+            if (Build.VERSION.SDK_INT >= 33) {
+                super.onCharacteristicChanged(gatt, characteristic, value)
+
+                if (value.isNotEmpty()) {
+                    val str = String(value)
+                    setBleNotify(str)
+                }
             }
         }
     }
@@ -173,11 +189,17 @@ class BlePeripheral constructor(scanResult: ScanResult?) {
         return mConnectionState == BluetoothProfile.STATE_CONNECTED
     }
 
+    @Suppress("DEPRECATION")
     @SuppressLint("MissingPermission")
     fun writeCharacteristicTx(send: ByteArray) {
         if (mBluetoothGattCharacteristicTx != null) {
-            mBluetoothGattCharacteristicTx?.setValue(send)
-            mBluetoothGatt?.writeCharacteristic(mBluetoothGattCharacteristicTx)
+            if (Build.VERSION.SDK_INT >= 33) {
+                mBluetoothGatt?.writeCharacteristic(mBluetoothGattCharacteristicTx!!, send, BluetoothGattCharacteristic.WRITE_TYPE_NO_RESPONSE)
+            }
+            else {
+                mBluetoothGattCharacteristicTx?.value = send
+                mBluetoothGatt?.writeCharacteristic(mBluetoothGattCharacteristicTx)
+            }
         }
     }
 }

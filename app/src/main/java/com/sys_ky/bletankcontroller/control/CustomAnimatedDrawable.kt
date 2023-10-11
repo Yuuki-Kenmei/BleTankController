@@ -12,6 +12,7 @@ import android.graphics.drawable.Drawable
 import android.os.SystemClock
 import java.io.InputStream
 
+@Suppress("DEPRECATION")
 class CustomAnimatedDrawable(private val inputStream: InputStream): Drawable() {
     private val mMovie by lazy {
         Movie.decodeStream(inputStream)
