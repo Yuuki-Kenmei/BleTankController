@@ -10,10 +10,11 @@
     <string name="help4">設定</string>
     <string name="help4_1">基本設定 － デフォルトUUIDを設定します。新規接続先は最初にこのUUIDで接続試行します。</string>
     <string name="help4_2">保存済み接続先設定 － 既に接続したことがある接続先についての設定をします。接続先名、使用するコントローラーレイアウト、UUID、イメージ画像を設定できます。</string>
-    <string name="help4_3">コントローラーレイアウト編集 － コントローラーレイアウトを作成、編集、削除できます。デフォルトコントローラーは編集、削除できませんが、コピーして新規作成は可能です。\nボタン、スティック、ウェブビューを配置可能です。最小サイズ（青枠）より小さいサイズでの配置や、重ねての配置はできません。\n配置後の移動は項目を長押ししてドラッグしてください。上部のゴミ箱にドラッグすると削除できます。\n配置後のリサイズは項目をタップ後に四方の赤点をドラッグしてください。また、編集ボタンをタップすると各項目の送信値などの編集ができます。</string>
+    <string name="help4_3">コントローラーレイアウト編集 － コントローラーレイアウトを作成、編集、削除できます。デフォルトコントローラーは編集、削除できませんが、コピーして新規作成は可能です。\nボタン、スティック、ウェブビュー、レバーを配置可能です。最小サイズ（青枠）より小さいサイズでの配置や、重ねての配置はできません。\n配置後の移動は項目を長押ししてドラッグしてください。上部のゴミ箱にドラッグすると削除できます。\n配置後のリサイズは項目をタップ後に四方の赤点をドラッグしてください。また、編集ボタンをタップすると各項目の送信値などの編集ができます。</string>
     <string name="help4_3_1">ボタン － ボタン内テキストおよびタップ時の送信値を編集できます。また、ボタン色およびボタン内テキスト色を変更できます。</string>
     <string name="help4_3_2">スティック － スティックの分割数および段階数と、それに応じた送信値を編集できます。</string>
     <string name="help4_3_3">ウェブビュー － 表示するウェブページのURLを設定できます。</string>
+    <string name="help4_3_4">レバー － レバーの段階数、初期位置、縦横の向き、指を離したとき初期位置に戻すかと、各位置に応じた送信値を編集できます。</string>
     <string name="help4_4">初期化 － 基本設定、保存済み接続先設定、コントローラーレイアウトを初期化します。</string>
     <string name="setting_title">設定一覧</string>
     <string name="base_setting_title">デフォルトのＵＵＩＤを設定します。</string>
@@ -53,6 +54,13 @@
     <string name="edit_stick_alert_edit_send">段階数または分割数を変更している場合、送信値が初期値となります。</string>
     <string name="edit_webview_title">■ウェブビュー編集</string>
     <string name="edit_webview_url">■URL</string>
+    <string name="edit_lever_title">■レバー編集</string>
+    <string name="edit_lever_step">■段階数</string>
+    <string name="edit_lever_default_step">■初期位置</string>
+    <string name="edit_lever_vertical">■レバーを垂直方向にする</string>
+    <string name="edit_lever_return_default">■指を離したとき初期位置に戻す</string>
+    <string name="edit_lever_send_value">■送信値（段階／送信値）</string>
+    <string name="edit_lever_alert_edit_send">段階数を変更する場合、送信値が初期値となります。</string>
     <string name="controller_list_confirm_delete">レイアウトを削除します。\nよろしいですか。</string>
     <string name="controller_list_confirm_delete2">既に使用されているレイアウトを削除します。\nよろしいですか。</string>
     <string name="canvas_error_overlap">重ねることはできません。</string>
@@ -99,6 +107,7 @@
         <item>ボタン</item>
         <item>スティック</item>
         <item>ウェブビュー</item>
+        <item>レバー</item>
     </string-array>
 
     <string name="hello_blank_fragment">hello_blank_fragment</string>

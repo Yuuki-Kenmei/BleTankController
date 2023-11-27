@@ -32,6 +32,7 @@ import com.sys_ky.bletankcontroller.common.Constants
 import com.sys_ky.bletankcontroller.common.GridPoint
 import com.sys_ky.bletankcontroller.common.SendValueMap
 import com.sys_ky.bletankcontroller.common.ViewConfig
+import com.sys_ky.bletankcontroller.control.LeverView
 
 class CanvasView constructor(context: Context, attrs: AttributeSet) :ConstraintLayout(context, attrs) {
 
@@ -39,6 +40,7 @@ class CanvasView constructor(context: Context, attrs: AttributeSet) :ConstraintL
     private val cStickMinBlocks: Int = 4
     private val cButtonMinBlocks: Int = 2
     private val cWebMinBlocks: Int = 4
+    private val cLeverMinBlocks: Int = 4
 
     //各コントロールの最小サイズ
     private var mStickMinWidth: Int = 0
@@ -47,6 +49,8 @@ class CanvasView constructor(context: Context, attrs: AttributeSet) :ConstraintL
     private var mButtonMinHeight: Int = 0
     private var mWebMinWidth: Int = 0
     private var mWebMinHeight: Int = 0
+    private var mLeverMinWidth: Int = 0
+    private var mLeverMinHeight: Int = 0
 
     var mViewType: Int = Constants.cViewTypeButton
     var mLocateMode: Int = Constants.cLocateModeGrid
@@ -72,9 +76,11 @@ class CanvasView constructor(context: Context, attrs: AttributeSet) :ConstraintL
     private var mButtonCount: Int = 0
     private var mStickCount: Int = 0
     private var mWebCount: Int = 0
+    private var mLeverCount: Int = 0
     private var mButtonViewNo: MutableMap<Int, Int> = mutableMapOf()
     private var mStickViewNo: MutableMap<Int, Int> = mutableMapOf()
     private var mWebViewNo: MutableMap<Int, Int> = mutableMapOf()
+    private var mLeverViewNo: MutableMap<Int, Int> = mutableMapOf()
 
     private val mPaintMinRect: Paint = Paint()
     private val mPaintOverlapRect: Paint = Paint()
@@ -165,6 +171,8 @@ class CanvasView constructor(context: Context, attrs: AttributeSet) :ConstraintL
             mButtonMinHeight = (pitch[0] * cButtonMinBlocks).toInt()
             mWebMinWidth = (pitch[1] * cWebMinBlocks).toInt()
             mWebMinHeight = (pitch[0] * cWebMinBlocks).toInt()
+            mLeverMinWidth = (pitch[1] * cLeverMinBlocks).toInt()
+            mLeverMinHeight = (pitch[0] * cLeverMinBlocks).toInt()
         }
 
         //グリッドモードならグリッド描画
@@ -214,6 +222,10 @@ class CanvasView constructor(context: Context, attrs: AttributeSet) :ConstraintL
                 Constants.cViewTypeWeb -> {
                     minWidth = mWebMinWidth
                     minHeight = mWebMinHeight
+                }
+                Constants.cViewTypeLever -> {
+                    minWidth = mLeverMinWidth
+                    minHeight = mLeverMinHeight
                 }
             }
             if (config == null || config.width < minWidth || config.height < minHeight) {
@@ -386,6 +398,10 @@ class CanvasView constructor(context: Context, attrs: AttributeSet) :ConstraintL
                             minWidth = mWebMinWidth
                             minHeight = mWebMinHeight
                         }
+                        Constants.cViewTypeLever -> {
+                            minWidth = mLeverMinWidth
+                            minHeight = mLeverMinHeight
+                        }
                     }
 
                     //上下左右で分岐
@@ -516,6 +532,23 @@ class CanvasView constructor(context: Context, attrs: AttributeSet) :ConstraintL
                                 this.addView(webView)
                             }
                         }
+                        Constants.cViewTypeLever -> {
+                            if (mPlacingViewId < 0) {
+                                var lever: LeverView = LeverView(context, null, false)
+                                mPlacingViewId = View.generateViewId()
+                                mLeverCount++
+                                mLeverViewNo[mPlacingViewId] = mLeverCount
+                                lever.id = mPlacingViewId
+                                lever.setStepNum(2)
+                                lever.setDefaultStep(0)
+                                lever.setVertical(true)
+                                lever.setReturnDefault(true)
+                                lever.setOnTouchListener { view, motionEvent ->
+                                    return@setOnTouchListener onTouchChildEvent(view, motionEvent)
+                                }
+                                this.addView(lever)
+                            }
+                        }
                     }
 
                     //現時点での配置
@@ -598,6 +631,16 @@ class CanvasView constructor(context: Context, attrs: AttributeSet) :ConstraintL
                                 mWebCount--
                             }
                         }
+                        Constants.cViewTypeLever -> {
+                            //最小サイズ以下なら項目削除
+                            if (viewConfig!!.width < mLeverMinWidth || viewConfig.height < mLeverMinHeight) {
+                                val view = this.findViewById<LeverView>(mPlacingViewId)
+                                this.removeView(view)
+                                mViewConfigList.remove(mPlacingViewId)
+                                mLeverViewNo.remove(mPlacingViewId)
+                                mLeverCount--
+                            }
+                        }
                     }
 
                     //既存の項目と被っている場合もエラーで項目削除
@@ -625,6 +668,13 @@ class CanvasView constructor(context: Context, attrs: AttributeSet) :ConstraintL
                                 mViewConfigList.remove(mPlacingViewId)
                                 mWebViewNo.remove(mPlacingViewId)
                                 mWebCount--
+                            }
+                            Constants.cViewTypeLever -> {
+                                val view = this.findViewById<LeverView>(mPlacingViewId)
+                                this.removeView(view)
+                                mViewConfigList.remove(mPlacingViewId)
+                                mLeverViewNo.remove(mPlacingViewId)
+                                mLeverCount--
                             }
                         }
                     }
@@ -842,6 +892,9 @@ class CanvasView constructor(context: Context, attrs: AttributeSet) :ConstraintL
                         Constants.cViewTypeWeb -> {
                             mWebViewNo.remove(view.id)
                         }
+                        Constants.cViewTypeLever -> {
+                            mLeverViewNo.remove(view.id)
+                        }
                     }
                 }
                 mViewConfigList.remove(view.id)
@@ -924,9 +977,20 @@ class CanvasView constructor(context: Context, attrs: AttributeSet) :ConstraintL
                     config.color1 = (v.background as ColorDrawable).color
                     config.color2 = v.currentTextColor
                 } catch (e: Exception) {
-                    config.viewType = Constants.cViewTypeWeb
-                    config.text = ""
-                    config.sendValueMap = SendValueMap()
+                    try{
+                        val v: WebView = findViewById(viewId)
+                        config.viewType = Constants.cViewTypeWeb
+                        config.text = ""
+                        config.sendValueMap = SendValueMap()
+                    } catch (e: Exception) {
+                        val v: LeverView = findViewById(viewId)
+                        config.viewType = Constants.cViewTypeLever
+                        config.step = v.getStepNum()
+                        config.split = v.getDefaultStep()
+                        config.vertical = v.getVertical()
+                        config.returnDefault = v.getReturnDefault()
+                        config.sendValueMap = SendValueMap.createInitLeverSendValueMap(v.getStepNum(), mLeverViewNo[viewId]!!.toInt())
+                    }
                 }
             }
         }
@@ -961,6 +1025,13 @@ class CanvasView constructor(context: Context, attrs: AttributeSet) :ConstraintL
                     view.setBackgroundColor(Color.GREEN)
                 }
             }
+            Constants.cViewTypeLever -> {
+                val view = findViewById<LeverView>(viewId)
+                view.setStepNum(config.step)
+                view.setDefaultStep(config.split)
+                view.setVertical(config.vertical)
+                view.setReturnDefault(config.returnDefault)
+            }
         }
     }
 
@@ -974,7 +1045,7 @@ class CanvasView constructor(context: Context, attrs: AttributeSet) :ConstraintL
         return mViewConfigList
     }
 
-    //ビューIDからボタン、スティック、ウェブビューの番号（連番）を取得
+    //ビューIDからボタン、スティック、ウェブビュー、レバーの番号（連番）を取得
     fun getViewNoFromId(viewId: Int): Int {
         var rtn: Int? = null
         val config = mViewConfigList[viewId]
@@ -988,6 +1059,9 @@ class CanvasView constructor(context: Context, attrs: AttributeSet) :ConstraintL
                 }
                 Constants.cViewTypeWeb -> {
                     rtn = mWebViewNo[viewId]
+                }
+                Constants.cViewTypeLever -> {
+                    rtn = mLeverViewNo[viewId]
                 }
             }
         }
@@ -1013,6 +1087,7 @@ class CanvasView constructor(context: Context, attrs: AttributeSet) :ConstraintL
         mButtonViewNo.clear()
         mStickViewNo.clear()
         mWebViewNo.clear()
+        mLeverViewNo.clear()
 
         viewConfigList.forEach { viewConfig ->
             var viewId: Int = -1
@@ -1058,6 +1133,21 @@ class CanvasView constructor(context: Context, attrs: AttributeSet) :ConstraintL
                         return@setOnTouchListener onTouchChildEvent(view, motionEvent)
                     }
                     this.addView(webView)
+                }
+                Constants.cViewTypeLever -> {
+                    var lever: LeverView = LeverView(context, null, false)
+                    viewId = View.generateViewId()
+                    mLeverCount++
+                    mLeverViewNo[viewId] = mLeverCount
+                    lever.id = viewId
+                    lever.setStepNum(viewConfig.step)
+                    lever.setDefaultStep(viewConfig.split)
+                    lever.setVertical(viewConfig.vertical)
+                    lever.setReturnDefault(viewConfig.returnDefault)
+                    lever.setOnTouchListener { view, motionEvent ->
+                        return@setOnTouchListener onTouchChildEvent(view, motionEvent)
+                    }
+                    this.addView(lever)
                 }
             }
             setConstraintSet(viewId, viewConfig.width, viewConfig.height, viewConfig.start, viewConfig.top)
@@ -1191,6 +1281,9 @@ class CanvasView constructor(context: Context, attrs: AttributeSet) :ConstraintL
                             }
                             Constants.cViewTypeWeb -> {
                                 MainActivity.showEditWebViewFragment(mSelectingViewId)
+                            }
+                            Constants.cViewTypeLever -> {
+                                MainActivity.showEditLeverFragment(mSelectingViewId)
                             }
                         }
                     }

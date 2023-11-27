@@ -44,6 +44,9 @@ class ControlListFragment : Fragment() {
             Constants.cViewTypeWeb -> {
                 controlListSpinner.setSelection(getResources().getStringArray(R.array.control_array).indexOf("ウェブビュー"))
             }
+            Constants.cViewTypeLever -> {
+                controlListSpinner.setSelection(getResources().getStringArray(R.array.control_array).indexOf("レバー"))
+            }
         }
 
         controlListSpinner.onItemSelectedListener =  object : AdapterView.OnItemSelectedListener {
@@ -62,6 +65,9 @@ class ControlListFragment : Fragment() {
                     }
                     "ウェブビュー" -> {
                         viewType = Constants.cViewTypeWeb
+                    }
+                    "レバー" -> {
+                        viewType = Constants.cViewTypeLever
                     }
                 }
                 MainActivity.getControllerLayoutFragment().setViewType(viewType)

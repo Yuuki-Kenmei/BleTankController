@@ -21,6 +21,7 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
@@ -31,12 +32,14 @@ import com.sys_ky.bletankcontroller.ble.BleNotifyViewModelFactory
 import com.sys_ky.bletankcontroller.common.Constants
 import com.sys_ky.bletankcontroller.common.SendValueMap
 import com.sys_ky.bletankcontroller.control.CustomImageButton
+import com.sys_ky.bletankcontroller.control.LeverView
 import com.sys_ky.bletankcontroller.control.OneClickListener
 import com.sys_ky.bletankcontroller.control.StickView
 import com.sys_ky.bletankcontroller.room.DbCtrl
 import com.sys_ky.bletankcontroller.room.entity.ControlSendValue
 import com.sys_ky.bletankcontroller.room.entity.ControllerLayoutDetail
 import java.util.*
+import kotlin.collections.ArrayDeque
 import kotlin.concurrent.scheduleAtFixedRate
 
 private const val ARG_PARAM1 = "param1"
@@ -49,6 +52,10 @@ class ControllerPadFragment : Fragment() {
     private var mSendValueList: MutableMap<Int, SendValueMap> = mutableMapOf()
 
     private var mStickViewIdList: MutableList<Int> = mutableListOf()
+    private var mLeverViewIdList: MutableList<Int> = mutableListOf()
+    private var mSendAlways: Int = 0
+
+    private var mSendDataQueue: ArrayDeque<String> = ArrayDeque()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,6 +73,29 @@ class ControllerPadFragment : Fragment() {
 
         val controllerPadNameTextView = view.findViewById<TextView>(R.id.controllerPadNameTextView)
         controllerPadNameTextView.text = mName
+        controllerPadNameTextView.setOnLongClickListener {
+            mSendAlways++
+            if (mSendAlways > 3) {
+                mSendAlways = 0
+            }
+            var message: String = ""
+            when(mSendAlways) {
+                0 -> {
+                    message = "定期的に送信しない"
+                }
+                1 -> {
+                    message = "スティックのみ定期的に送信する"
+                }
+                2 -> {
+                    message = "レバーのみ定期的に送信する"
+                }
+                3 -> {
+                    message = "スティックとレバーのどちらも定期的に送信する"
+                }
+            }
+            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+            return@setOnLongClickListener true
+        }
 
         val controllerPadNoticeTextView = view.findViewById<TextView>(R.id.controllerPadNoticeTextView)
         controllerPadNoticeTextView.text = ""
@@ -110,7 +140,7 @@ class ControllerPadFragment : Fragment() {
                         when(motionEvent.action) {
                             MotionEvent.ACTION_DOWN -> {
                                 button.alpha = 0.5f
-                                sendValueBle(mSendValueList[view.id]!!.getSendValue(0,0))
+                                mSendDataQueue.add(mSendValueList[view.id]!!.getSendValue(0,0))
                                 //Log.d("button", mSendValueList[view.id]!!.getSendValue(0,0))
                             }
                             MotionEvent.ACTION_UP -> {
@@ -134,7 +164,7 @@ class ControllerPadFragment : Fragment() {
                     stick.setStepNum(controllerLayoutDetail.step)
                     stick.setOnStickChangeListener(object:StickView.OnStickChangeListener{
                         override fun onStickChangeEvent(view: StickView) {
-                            sendValueBle(mSendValueList[view.id]!!.getSendValue(view.NowStopStep,view.NowStopSplit))
+                            mSendDataQueue.add(mSendValueList[view.id]!!.getSendValue(view.NowStopStep,view.NowStopSplit))
                             //Log.d("stick", mSendValueList[view.id]!!.getSendValue(view.NowStopStep,view.NowStopSplit).toString())
                         }
                     })
@@ -155,6 +185,24 @@ class ControllerPadFragment : Fragment() {
                     val settings: WebSettings = webView.getSettings()
                     settings.javaScriptEnabled = true
                     controllerPadConstraintLayout.addView(webView)
+                    setConstraintSet(controllerPadConstraintLayout, viewId, controllerLayoutDetail.width, controllerLayoutDetail.height, controllerLayoutDetail.start, controllerLayoutDetail.top)
+                }
+                Constants.cViewTypeLever -> {
+                    var lever: LeverView = LeverView(requireContext(), null)
+                    viewId = View.generateViewId()
+                    lever.id = viewId
+                    mLeverViewIdList.add(viewId)
+                    lever.setStepNum(controllerLayoutDetail.step)
+                    lever.setDefaultStep(controllerLayoutDetail.split)
+                    lever.setVertical(controllerLayoutDetail.vertical)
+                    lever.setReturnDefault(controllerLayoutDetail.return_default)
+                    lever.setOnLeverChangeListener(object:LeverView.OnLeverChangeListener{
+                        override fun onLeverChangeEvent(view: LeverView) {
+                            mSendDataQueue.add(mSendValueList[view.id]!!.getSendValue(view.NowStopStep,0))
+                            //Log.d("lever", mSendValueList[view.id]!!.getSendValue(view.NowStopStep,0).toString())
+                        }
+                    })
+                    controllerPadConstraintLayout.addView(lever)
                     setConstraintSet(controllerPadConstraintLayout, viewId, controllerLayoutDetail.width, controllerLayoutDetail.height, controllerLayoutDetail.start, controllerLayoutDetail.top)
                 }
             }
@@ -187,13 +235,51 @@ class ControllerPadFragment : Fragment() {
 
         Timer().scheduleAtFixedRate(500, 500) {
             var delay: Long = 0
-            mStickViewIdList.forEach {  id ->
-                var stickView = controllerPadConstraintLayout.findViewById<StickView>(id)
-                val handler = Handler(Looper.getMainLooper())
-                handler.postDelayed({
-                    sendValueBle(mSendValueList[stickView.id]!!.getSendValue(stickView.NowStopStep,stickView.NowStopSplit))
-                }, delay)
-                delay += 100
+            when (mSendAlways) {
+                1 -> {
+                    mStickViewIdList.forEach {  id ->
+                        var stickView = controllerPadConstraintLayout.findViewById<StickView>(id)
+                        val handler = Handler(Looper.getMainLooper())
+                        handler.postDelayed({
+                            mSendDataQueue.add(mSendValueList[stickView.id]!!.getSendValue(stickView.NowStopStep,stickView.NowStopSplit))
+                        }, delay)
+                        delay += 100
+                    }
+                }
+                2 -> {
+                    mLeverViewIdList.forEach {  id ->
+                        var leverView = controllerPadConstraintLayout.findViewById<LeverView>(id)
+                        val handler = Handler(Looper.getMainLooper())
+                        handler.postDelayed({
+                            mSendDataQueue.add(mSendValueList[leverView.id]!!.getSendValue(leverView.NowStopStep,0))
+                        }, delay)
+                        delay += 100
+                    }
+                }
+                3 -> {
+                    mStickViewIdList.forEach {  id ->
+                        var stickView = controllerPadConstraintLayout.findViewById<StickView>(id)
+                        val handler = Handler(Looper.getMainLooper())
+                        handler.postDelayed({
+                            mSendDataQueue.add(mSendValueList[stickView.id]!!.getSendValue(stickView.NowStopStep,stickView.NowStopSplit))
+                        }, delay)
+                        delay += 100
+                    }
+                    mLeverViewIdList.forEach {  id ->
+                        var leverView = controllerPadConstraintLayout.findViewById<LeverView>(id)
+                        val handler = Handler(Looper.getMainLooper())
+                        handler.postDelayed({
+                            mSendDataQueue.add(mSendValueList[leverView.id]!!.getSendValue(leverView.NowStopStep,0))
+                        }, delay)
+                        delay += 100
+                    }
+                }
+            }
+        }
+
+        Timer().scheduleAtFixedRate(0, 10) {
+            if (!mSendDataQueue.isEmpty()) {
+                sendValueBle(mSendDataQueue.removeFirst())
             }
         }
 

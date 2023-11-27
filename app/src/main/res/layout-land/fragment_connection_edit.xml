@@ -224,7 +224,7 @@
                         android:layout_marginEnd="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
-                        android:scaleType="fitXY"
+                        android:scaleType="fitCenter"
                         android:background="@drawable/border_rectangle2"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"

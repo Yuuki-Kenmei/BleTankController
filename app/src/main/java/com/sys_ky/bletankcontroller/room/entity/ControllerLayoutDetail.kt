@@ -15,6 +15,8 @@ data class ControllerLayoutDetail (
     @ColumnInfo(name = "TEXT") val text: String,
     @ColumnInfo(name = "STEP") val step: Int,
     @ColumnInfo(name = "SPLIT") val split: Int,
+    @ColumnInfo(name = "VERTICAL") val vertical: Boolean,
+    @ColumnInfo(name = "RETURN_DEFAULT") val return_default: Boolean,
     @ColumnInfo(name = "C1_RED") val c1_red: Int,
     @ColumnInfo(name = "C1_GREEN") val c1_green: Int,
     @ColumnInfo(name = "C1_BLUE") val c1_blue: Int,

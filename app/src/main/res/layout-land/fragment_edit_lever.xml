@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:clickable="true"
+    android:id="@+id/elConstraintLayout"
+    tools:context=".EditButtonFragment">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/editLeverGuidelineTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/editLeverGuidelineBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.85" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/editLeverGuidelineHorizon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/editLeverGuidelineVertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.35" />
+
+    <View
+        android:id="@+id/editLeverLine1"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/editLeverGuidelineHorizon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editLeverGuidelineHorizon" />
+
+    <View
+        android:id="@+id/editLeverLine2"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/editLeverGuidelineVertical"
+        app:layout_constraintStart_toStartOf="@+id/editLeverGuidelineVertical"
+        app:layout_constraintTop_toTopOf="@+id/editLeverGuidelineHorizon" />
+
+    <View
+        android:id="@+id/editLeverLine3"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/editLeverGuidelineHorizon"
+        app:layout_constraintTop_toBottomOf="parent" />
+
+    <View
+        android:id="@+id/editLeverLine4"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editLeverGuidelineHorizon" />
+
+    <EditText
+        android:id="@+id/editLeverControllerNameTextView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/black"
+        android:enabled="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/editLeverGuidelineTop" />
+
+    <TextView
+        android:id="@+id/editLeverTextView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="16dp"
+        android:singleLine="false"
+        android:text="@string/edit_lever_title"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/editLeverGuidelineHorizon"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.sys_ky.bletankcontroller.control.LeverView
+        android:id="@+id/editLeverSampleLever"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/editLeverGuidelineVertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editLeverGuidelineHorizon" />
+
+    <TextView
+        android:id="@+id/editLeverTextView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/edit_lever_step"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/editLeverGuidelineVertical"
+        app:layout_constraintTop_toTopOf="@+id/editLeverGuidelineHorizon" />
+
+    <Spinner
+        android:id="@+id/editLeverStepSpinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="#777777"
+        android:entries="@array/step_array"
+        app:layout_constraintEnd_toEndOf="@+id/editLeverTextView2"
+        app:layout_constraintStart_toStartOf="@+id/editLeverTextView2"
+        app:layout_constraintTop_toBottomOf="@+id/editLeverTextView2" />
+
+    <TextView
+        android:id="@+id/editLeverTextView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/edit_lever_default_step"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/editLeverStepSpinner"
+        app:layout_constraintTop_toTopOf="@+id/editLeverGuidelineHorizon" />
+
+    <Spinner
+        android:id="@+id/editLeverDefaultStepSpinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="#777777"
+        app:layout_constraintEnd_toEndOf="@+id/editLeverTextView3"
+        app:layout_constraintStart_toStartOf="@+id/editLeverTextView3"
+        app:layout_constraintTop_toBottomOf="@+id/editLeverTextView3" />
+
+    <TextView
+        android:id="@+id/editLeverTextView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/edit_lever_send_value"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/editLeverTextView5"
+        app:layout_constraintTop_toTopOf="@+id/editLeverGuidelineHorizon" />
+
+    <TextView
+        android:id="@+id/editLeverTextView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/edit_lever_vertical"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/editLeverStepSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/editLeverStepSpinner" />
+
+    <Switch
+        android:id="@+id/editLeverVerticalSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="#777777"
+        app:layout_constraintEnd_toEndOf="@+id/editLeverTextView4"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/editLeverTextView4"
+        app:layout_constraintTop_toBottomOf="@+id/editLeverTextView4" />
+
+    <TextView
+        android:id="@+id/editLeverTextView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/edit_lever_return_default"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/editLeverVerticalSwitch"
+        app:layout_constraintTop_toBottomOf="@+id/editLeverVerticalSwitch" />
+
+    <Switch
+        android:id="@+id/editLeverReturnSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="#777777"
+        app:layout_constraintEnd_toEndOf="@+id/editLeverTextView5"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@+id/editLeverTextView5"
+        app:layout_constraintTop_toBottomOf="@+id/editLeverTextView5" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/editLeverGuidelineBottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/editLeverTextView6"
+        app:layout_constraintTop_toBottomOf="@+id/editLeverTextView6">
+
+        <LinearLayout
+            android:id="@+id/editLeverLinearLayoutH"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:id="@+id/editLeverLinearLayoutV1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.8"
+                android:orientation="vertical"></LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/editLeverLinearLayoutV2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2"
+                android:orientation="vertical"></LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editLeverGuidelineVertical"
+        app:layout_constraintTop_toBottomOf="@+id/editLeverGuidelineBottom">
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <com.sys_ky.bletankcontroller.control.CustomImageButton
+            android:id="@+id/editLeverFixImageButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="16dp"
+            android:layout_weight="0.5"
+            android:background="@null"
+            android:scaleType="fitEnd"
+            android:src="@drawable/img_fix" />
+
+        <com.sys_ky.bletankcontroller.control.CustomImageButton
+            android:id="@+id/editLeverBackImageButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="16dp"
+            android:layout_weight="0.5"
+            android:background="@null"
+            android:scaleType="fitEnd"
+            android:src="@drawable/img_back" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

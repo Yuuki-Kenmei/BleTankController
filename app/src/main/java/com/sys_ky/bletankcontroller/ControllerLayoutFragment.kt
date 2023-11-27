@@ -169,6 +169,8 @@ class ControllerLayoutFragment : Fragment() {
                 viewConfig.text = controllerLayoutDetail.text
                 viewConfig.step = controllerLayoutDetail.step
                 viewConfig.split = controllerLayoutDetail.split
+                viewConfig.vertical = controllerLayoutDetail.vertical
+                viewConfig.returnDefault = controllerLayoutDetail.return_default
                 viewConfig.color1 = Color.rgb(controllerLayoutDetail.c1_red, controllerLayoutDetail.c1_green, controllerLayoutDetail.c1_blue)
                 viewConfig.color2 = Color.rgb(controllerLayoutDetail.c2_red, controllerLayoutDetail.c2_green, controllerLayoutDetail.c2_blue)
 
@@ -248,6 +250,8 @@ class ControllerLayoutFragment : Fragment() {
                     viewConfig.text,
                     viewConfig.step,
                     viewConfig.split,
+                    viewConfig.vertical,
+                    viewConfig.returnDefault,
                     viewConfig.color1.red,
                     viewConfig.color1.green,
                     viewConfig.color1.blue,

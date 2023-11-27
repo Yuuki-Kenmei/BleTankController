@@ -18,6 +18,8 @@ class ViewConfig {
     var text: String = ""
     var step: Int = 2
     var split: Int = 8
+    var vertical: Boolean = true
+    var returnDefault: Boolean = true
     var sendValueMap: SendValueMap = SendValueMap()
     var color1 = Constants.cDefaultButtonBackColor
     var color2 = Constants.cDefaultButtonTextColor

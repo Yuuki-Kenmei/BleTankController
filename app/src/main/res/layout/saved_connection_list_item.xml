@@ -50,7 +50,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_weight="0.35"
-            android:scaleType="fitXY" />
+            android:scaleType="fitCenter" />
 
         <com.sys_ky.bletankcontroller.control.CustomImageButton
             android:id="@+id/savedConnectionListItemEditImageButton"

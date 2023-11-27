@@ -18,6 +18,7 @@ class Constants {
         const val cViewTypeButton: Int = 1
         const val cViewTypeStick: Int = 2
         const val cViewTypeWeb: Int = 3
+        const val cViewTypeLever: Int = 4
         val cDefaultButtonBackColor = Color.rgb(89, 89, 89)
         val cDefaultButtonTextColor = Color.rgb(255, 0, 0)
         const val cNotifyReady = "READY"

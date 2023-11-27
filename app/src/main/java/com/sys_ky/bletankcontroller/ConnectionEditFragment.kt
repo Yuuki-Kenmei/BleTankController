@@ -311,6 +311,7 @@ class ConnectionEditFragment : Fragment() {
         })
         if (savedConnection != null) {
             controllerSelectListAdapter.mInitLayoutId = savedConnection.layout_id
+            mControllerLayoutId = savedConnection.layout_id
         }
         val controllerLayoutList: List<ControllerLayout> = dbCtrl.ControllerLayout().selectAll()
         controllerSelectListAdapter.submitList(controllerLayoutList)

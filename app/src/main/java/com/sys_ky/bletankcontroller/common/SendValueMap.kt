@@ -38,5 +38,14 @@ class SendValueMap {
             }
             return sendValueMap
         }
+
+        fun createInitLeverSendValueMap(step: Int, no: Int): SendValueMap {
+            val sendValueMap = SendValueMap()
+            sendValueMap.setSendValue(0, 0, "!L!$no!0!0")
+            for (i in 0..step) {
+                sendValueMap.setSendValue(i, 0, "!L!$no!$i")
+            }
+            return sendValueMap
+        }
     }
 }

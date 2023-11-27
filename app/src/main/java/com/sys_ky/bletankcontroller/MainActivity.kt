@@ -274,6 +274,8 @@ class MainActivity : AppCompatActivity() {
                     "",
                     step,
                     split,
+                    true,
+                    true,
                     0,
                     0,
                     0,
@@ -309,6 +311,8 @@ class MainActivity : AppCompatActivity() {
                     "",
                     step,
                     split,
+                    true,
+                    true,
                     0,
                     0,
                     0,
@@ -344,6 +348,8 @@ class MainActivity : AppCompatActivity() {
                     "BUTTON1",
                     step,
                     split,
+                    true,
+                    true,
                     Constants.cDefaultButtonBackColor.red,
                     Constants.cDefaultButtonBackColor.green,
                     Constants.cDefaultButtonBackColor.blue,
@@ -376,6 +382,8 @@ class MainActivity : AppCompatActivity() {
                     "BUTTON2",
                     step,
                     split,
+                    true,
+                    true,
                     Constants.cDefaultButtonBackColor.red,
                     Constants.cDefaultButtonBackColor.green,
                     Constants.cDefaultButtonBackColor.blue,
@@ -454,6 +462,7 @@ class MainActivity : AppCompatActivity() {
         private var mEditStickFragment = EditStickFragment()
         private var mEditStickSendFragment = EditStickSendFragment()
         private var mEditWebViewFragment = EditWebViewFragment()
+        private var mEditLeverFragment = EditLeverFragment()
         private var mEditColorFragment = EditColorFragment()
         private var mConnectFragment = ConnectFragment()
         private var mUuidEditFragment = UuidEditFragment()
@@ -783,6 +792,31 @@ class MainActivity : AppCompatActivity() {
             }
             val fragmentTransaction = mFragmentManager.beginTransaction()
             fragmentTransaction.remove(mEditWebViewFragment)
+            fragmentTransaction.commit()
+            mFragmentManager.popBackStack()
+        }
+
+        fun showEditLeverFragment(viewId: Int) {
+            mEditLeverFragment = EditLeverFragment.newInstance(viewId)
+            val fade = Fade()
+            mEditLeverFragment.enterTransition = fade
+            mEditLeverFragment.exitTransition = fade
+
+            if (mFragmentManager.findFragmentById(mEditLeverFragment.id) != null) {
+                return
+            }
+            val fragmentTransaction = mFragmentManager.beginTransaction()
+            fragmentTransaction.add(mFragmentContainerConstraintLayout.id, mEditLeverFragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+        }
+
+        fun closeEditLeverFragment() {
+            if (mFragmentManager.findFragmentById(mEditLeverFragment.id) == null) {
+                return
+            }
+            val fragmentTransaction = mFragmentManager.beginTransaction()
+            fragmentTransaction.remove(mEditLeverFragment)
             fragmentTransaction.commit()
             mFragmentManager.popBackStack()
         }
