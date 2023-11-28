@@ -16,8 +16,11 @@ import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import com.journeyapps.barcodescanner.ScanContract
+import com.journeyapps.barcodescanner.ScanOptions
 import com.sys_ky.bletankcontroller.common.SendValueMap
 import com.sys_ky.bletankcontroller.common.ViewConfig
 import com.sys_ky.bletankcontroller.control.CustomImageButton
@@ -36,6 +39,50 @@ class EditStickSendFragment : Fragment() {
     private var mSplit: Int = -1
 
     private val mViewIdToPoint: MutableMap<Int, Array<Int>> = mutableMapOf()
+
+    private val mBarcodeLauncher = registerForActivityResult(ScanContract()) { result ->
+        if (result.contents != null) {
+            val readStr: String = result.contents
+            var readList: List<String> = readStr.split("|")
+
+            if (readList[0] != "s") {
+                Toast.makeText(requireContext(), "スティック用のコードではありません。", Toast.LENGTH_LONG).show()
+                return@registerForActivityResult
+            }
+
+            if (readList.size > 3 && readList[1].toInt() != mStep) {
+                Toast.makeText(requireContext(), "段階数が異なります。", Toast.LENGTH_LONG).show()
+                return@registerForActivityResult
+            }
+
+            if (readList.size > 3 && readList[2].toInt() != mSplit) {
+                Toast.makeText(requireContext(), "分割数が異なります。", Toast.LENGTH_LONG).show()
+                return@registerForActivityResult
+            }
+
+            if (readList.size != mStep * mSplit + 4) {
+                Toast.makeText(requireContext(), "正しくないコードです。", Toast.LENGTH_LONG).show()
+                return@registerForActivityResult
+            }
+
+            mViewIdToPoint.keys.forEach { viewId ->
+                val point = mViewIdToPoint[viewId] as Array<Int>
+                val step = point[0]
+                val split = point[1]
+
+                var index = if (step == 0 && split == 0) {
+                    3
+                } else {
+                    3 + (step - 1) * mSplit + split + 1
+                }
+
+                requireView().findViewById<EditText>(viewId).setText(readList[index], TextView.BufferType.NORMAL)
+            }
+            Toast.makeText(requireContext(), "反映しました。", Toast.LENGTH_LONG).show()
+        } else {
+            Toast.makeText(requireContext(), "読み取りに失敗しました。", Toast.LENGTH_LONG).show()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -233,6 +280,16 @@ class EditStickSendFragment : Fragment() {
                 MainActivity.getEditStickFragment().updateSendValueMap(sendValueMapFix)
                 MainActivity.getEditStickFragment().updateInitStepSplit(mStep, mSplit)
                 MainActivity.closeEditStickSendFragment()
+            }
+        })
+
+        val essQRImageButton = view.findViewById<CustomImageButton>(R.id.editStickSendQRImageButton)
+        essQRImageButton.setOnOneClickListener(object: OneClickListener() {
+            override fun onOneClick(view: View) {
+
+                val options = ScanOptions()
+                options.setOrientationLocked(false)
+                mBarcodeLauncher.launch(options)
             }
         })
 

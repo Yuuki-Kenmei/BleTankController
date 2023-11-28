@@ -33,15 +33,43 @@
         app:layout_constraintStart_toStartOf="@+id/editStickSendGuideline2"
         app:layout_constraintTop_toTopOf="@+id/editStickSendGuideline1" >
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/editStickSendGuideLine3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.8" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/editStickSendGuideLine4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.18" />
+
         <TextView
             android:id="@+id/editStickSendTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:text="(段階,分割)"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/editStickSendQRImageButton"
+            tools:layout_editor_absoluteY="8dp" />
+
+        <com.sys_ky.bletankcontroller.control.CustomImageButton
+            android:id="@+id/editStickSendQRImageButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:background="@null"
+            android:scaleType="fitEnd"
+            android:src="@drawable/img_qr"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/editStickSendGuideLine4"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ScrollView
@@ -49,10 +77,10 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/editStickSendFixImageButton"
+            app:layout_constraintBottom_toTopOf="@+id/editStickSendGuideLine3"
             app:layout_constraintEnd_toEndOf="@+id/editStickSendConstraintLayout"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editStickSendTextView">
+            app:layout_constraintTop_toBottomOf="@+id/editStickSendQRImageButton">
 
             <LinearLayout
                 android:id="@+id/editStickSendLinearLayoutH"
@@ -80,31 +108,46 @@
             </LinearLayout>
         </ScrollView>
 
-        <com.sys_ky.bletankcontroller.control.CustomImageButton
-            android:id="@+id/editStickSendBackImageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginBottom="8dp"
-            android:background="@null"
-            android:scaleType="fitEnd"
-            android:src="@drawable/img_back"
-            app:layout_constraintBottom_toBottomOf="@id/editStickSendConstraintLayout"
-            app:layout_constraintEnd_toEndOf="@+id/editStickSendConstraintLayout"
-            app:layout_constraintTop_toBottomOf="@+id/editStickSendScrollView" />
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editStickSendGuideLine3">
 
-        <com.sys_ky.bletankcontroller.control.CustomImageButton
-            android:id="@+id/editStickSendFixImageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="8dp"
-            android:background="@null"
-            android:scaleType="fitEnd"
-            android:src="@drawable/img_fix"
-            app:layout_constraintBottom_toBottomOf="@id/editStickSendConstraintLayout"
-            app:layout_constraintEnd_toStartOf="@+id/editStickSendBackImageButton"
-            app:layout_constraintTop_toBottomOf="@+id/editStickSendScrollView" />
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.0" />
+
+            <com.sys_ky.bletankcontroller.control.CustomImageButton
+                android:id="@+id/editStickSendFixImageButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="0.5"
+                android:background="@null"
+                android:scaleType="fitEnd"
+                android:src="@drawable/img_fix"
+                app:layout_constraintBottom_toBottomOf="@id/editStickSendConstraintLayout"
+                app:layout_constraintEnd_toStartOf="@+id/editStickSendBackImageButton"
+                app:layout_constraintTop_toTopOf="@+id/editStickSendGuideLine3" />
+
+            <com.sys_ky.bletankcontroller.control.CustomImageButton
+                android:id="@+id/editStickSendBackImageButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="0.5"
+                android:background="@null"
+                android:scaleType="fitEnd"
+                android:src="@drawable/img_back" />
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

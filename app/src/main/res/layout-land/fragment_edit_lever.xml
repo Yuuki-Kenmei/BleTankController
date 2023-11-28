@@ -105,6 +105,21 @@
         app:layout_constraintBottom_toTopOf="@+id/editLeverGuidelineHorizon"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <com.sys_ky.bletankcontroller.control.CustomImageButton
+        android:id="@+id/editLeverQRImageButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        android:background="@null"
+        android:scaleType="fitEnd"
+        android:src="@drawable/img_qr"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="@+id/editLeverLine1"
+        app:layout_constraintStart_toEndOf="@+id/editLeverTextView6"
+        app:layout_constraintTop_toTopOf="@+id/editLeverGuidelineHorizon" />
+
     <com.sys_ky.bletankcontroller.control.LeverView
         android:id="@+id/editLeverSampleLever"
         android:layout_width="0dp"
@@ -211,6 +226,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editLeverTextView5" />
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
@@ -225,7 +241,7 @@
             android:id="@+id/editLeverLinearLayoutH"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:id="@+id/editLeverLinearLayoutV1"
@@ -258,7 +274,7 @@
         <Space
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1.0" />
 
         <com.sys_ky.bletankcontroller.control.CustomImageButton
             android:id="@+id/editLeverFixImageButton"

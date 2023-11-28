@@ -22,8 +22,11 @@ import android.widget.LinearLayout
 import android.widget.Spinner
 import android.widget.Switch
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import com.journeyapps.barcodescanner.ScanContract
+import com.journeyapps.barcodescanner.ScanOptions
 import com.sys_ky.bletankcontroller.common.SendValueMap
 import com.sys_ky.bletankcontroller.common.ViewConfig
 import com.sys_ky.bletankcontroller.control.CustomImageButton
@@ -45,6 +48,40 @@ class EditLeverFragment : Fragment() {
     private val mViewIdToPoint: MutableMap<Int, Int> = mutableMapOf()
 
     private var mAlertFlg: Boolean = false
+
+    private val mBarcodeLauncher = registerForActivityResult(ScanContract()) { result ->
+        if (result.contents != null) {
+            val setStep = requireView().findViewById<Spinner>(R.id.editLeverStepSpinner).selectedItem.toString().toInt()
+
+            val readStr: String = result.contents
+            var readList: List<String> = readStr.split("|")
+
+            if (readList[0] != "l") {
+                Toast.makeText(requireContext(), "レバー用のコードではありません。", Toast.LENGTH_LONG).show()
+                return@registerForActivityResult
+            }
+
+            if (readList.size > 2 && readList[1].toInt() != setStep) {
+                Toast.makeText(requireContext(), "段階数が異なります。", Toast.LENGTH_LONG).show()
+                return@registerForActivityResult
+            }
+
+            if (readList.size != setStep + 3) {
+                Toast.makeText(requireContext(), "正しくないコードです。", Toast.LENGTH_LONG).show()
+                return@registerForActivityResult
+            }
+
+            mViewIdToPoint.keys.forEach { viewId ->
+                val step = mViewIdToPoint[viewId] as Int
+
+                var index = 2 + step
+                requireView().findViewById<EditText>(viewId).setText(readList[index], TextView.BufferType.NORMAL)
+            }
+            Toast.makeText(requireContext(), "反映しました。", Toast.LENGTH_LONG).show()
+        } else {
+            Toast.makeText(requireContext(), "読み取りに失敗しました。", Toast.LENGTH_LONG).show()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -246,6 +283,16 @@ class EditLeverFragment : Fragment() {
                 MainActivity.getControllerLayoutFragment().refViewConfig(mParamViewId, mViewConfig)
                 MainActivity.getControllerLayoutFragment().invalidateView(mParamViewId)
                 MainActivity.closeEditLeverFragment()
+            }
+        })
+
+        val editLeverQRImageButton = view.findViewById<CustomImageButton>(R.id.editLeverQRImageButton)
+        editLeverQRImageButton.setOnOneClickListener(object: OneClickListener() {
+            override fun onOneClick(view: View) {
+
+                val options = ScanOptions()
+                options.setOrientationLocked(false)
+                mBarcodeLauncher.launch(options)
             }
         })
 

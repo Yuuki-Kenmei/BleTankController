@@ -50,6 +50,8 @@ dependencies {
     annotationProcessor 'androidx.room:room-compiler:2.4.3'
     kapt 'androidx.room:room-compiler:2.4.3'
 
+    implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
+
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
 
 }
