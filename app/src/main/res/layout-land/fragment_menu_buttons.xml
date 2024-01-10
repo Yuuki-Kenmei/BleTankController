@@ -57,5 +57,10 @@
             android:src="@drawable/img_help"/>
     </LinearLayout>
 
+    <com.sys_ky.bletankcontroller.control.ConstraintLayoutWithTouchGif
+        android:id="@+id/menuConstraintLayoutWithTouchGif"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </com.sys_ky.bletankcontroller.control.ConstraintLayoutWithTouchGif>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

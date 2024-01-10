@@ -56,7 +56,6 @@ class MenuButtonsFragment : Fragment() {
                 MainActivity.closeBaseSettingFragment()
                 MainActivity.closeControllerListFragment()
                 MainActivity.closeSavedConnectionListFragment()
-                MainActivity.closeHelpFragment()
                 MainActivity.closeConnectFragment()
 
                 MainActivity.showHelpFragment()

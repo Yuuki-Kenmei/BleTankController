@@ -246,4 +246,10 @@
         app:layout_constraintTop_toTopOf="@+id/uuidEditGuideLineBottom"
         tools:ignore="SpeakableTextPresentCheck" />
 
+    <com.sys_ky.bletankcontroller.control.ConstraintLayoutWithTouchGif
+        android:id="@+id/uuidEditConstraintLayoutWithTouchGif"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </com.sys_ky.bletankcontroller.control.ConstraintLayoutWithTouchGif>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
